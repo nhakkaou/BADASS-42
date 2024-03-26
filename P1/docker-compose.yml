@@ -1,12 +1,12 @@
 version: "3"
 services:
   host_nhakkaou:
-    build: ./machine1
+    build: ./host
     container_name: host_nhakkaou
     image: host_nhakkaou
-    # restart: on-failure
+    restart: on-failure
   router_nhakkaou:
-    build: ./machine2
+    build: ./router
     container_name: router_nhakkaou
     image: router_nhakkaou
-    # restart: on-failure
+    restart: on-failure
