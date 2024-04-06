@@ -1,7 +1,18 @@
+ip link add br0 type bridge
+ip link set dev br0 up
+ip link add vxlan10 type vxlan id 10 dstport 4789
+ip link set dev vxlan10 up
+brctl addif br0 vxlan10
+brctl addif br0 eth0
 
-hostname router-nhakkaou3
-no ipv6 forwarding
-!
+
+#  Shell
+vtysh
+conf t
+# Config
+
+
+
 interface eth1
  ip address 10.1.1.6/30
  ip ospf area 0
@@ -14,7 +25,7 @@ router bgp 1
  neighbor 1.1.1.1 remote-as 1
  neighbor 1.1.1.1 update-source lo
  !
- address-family 12vpn evpn
+ address-family l2vpn evpn
   neighbor 1.1.1.1 activate
  exit-address-family
 !

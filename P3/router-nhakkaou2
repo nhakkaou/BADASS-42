@@ -10,8 +10,6 @@ vtysh
 conf t
 # Config
 
-hostname router-nhakkaou2
-no ipv6 forwarding
 interface eth0
  ip address 10.1.1.2/30
  ip ospf area 0
@@ -24,7 +22,7 @@ router bgp 1
  neighbor 1.1.1.1 remote-as 1
  neighbor 1.1.1.1 update-source lo
  !
- address-family 12vpn evpn
+ address-family l2vpn evpn
   neighbor 1.1.1.1 activate
   advertise-all-vni
 exit-address-family

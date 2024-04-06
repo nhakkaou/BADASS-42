@@ -1,3 +1,4 @@
+# Shell
 vtysh
 conf t
 # Config
@@ -7,15 +8,19 @@ no ipv6 forwarding
 !
 interface eth0
  ip address 10.1.1.1/30
+ ip ospf area 0
 !
 interface eth1
 ip address 10.1.1.5/30
+ip ospf area 0
 !
 interface eth2
  ip address 10.1.1.9/30
+ ip ospf area 0
 !
 interface lo
  ip address 1.1.1.1/32
+ ip ospf area 0
 !
 router bgp 1
  neighbor ibgp peer-group
@@ -23,9 +28,9 @@ router bgp 1
  neighbor ibgp update-source lo
  bgp listen range 1.1.1.0/29 peer-group ibgp
  !
- address-family 12vpn evpn
+ address-family l2vpn evpn
   neighbor ibgp activate
-  neighbor tbgp route-reflector-client
+  neighbor ibgp route-reflector-client
  exit-address-family
 !
 router ospf
