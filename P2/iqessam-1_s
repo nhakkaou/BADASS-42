@@ -1,0 +1,17 @@
+#First, we need to create a bridge and a vxlan interface.
+ip link add br0 type bridge
+# vxlan10 is the name of the vxlan interface, 10 is the vxlan id, eth0 is the physical interface that the vxlan interface will be created on, it will use static unicasts to communicate with the remote host using the ip address and udp port 4789.
+ip link add name vxlan10 type vxlan id 10 dev eth0 remote 10.1.1.2 local 10.1.1.1 dstport 4789
+
+# Add an ip address to the bridge interface.
+ip addr add 10.1.1.1/24 dev eth0
+# Add an ip address to the vxlan interface.
+ip addr add 20.1.1.1/24 dev vxlan10
+
+# Set the bridge and vxlan interface up. So that they can start working and passing traffic.
+ip link set dev br0 up
+ip link set dev vxlan10 up
+
+# Using brctl command to add the physical interface eth1 and the vxlan interface vxlan10 using the bridge br0.
+brctl addif br0 eth1
+brctl addif br0 vxlan10 
