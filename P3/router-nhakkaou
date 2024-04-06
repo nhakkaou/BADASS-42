@@ -1,37 +1,32 @@
-#shell
-ip link add br0 type bridge
-ip link add vxlan0 type vxlan id 10 dstport 4789
-ip link set eth1 master br0
-ip link set vxlan0 master br0
-ip link set vxlan0 up
-ip link set br0 up
-
-
-#vtysh
 vtysh
 conf t
+# Config
+
+hostname router-nhakkaou1
+no ipv6 forwarding
 !
 interface eth0
- ip address 10.1.1.2/30
- ip ospf area 0
+ ip address 10.1.1.1/30
+!
+interface eth1
+ip address 10.1.1.5/30
+!
+interface eth2
+ ip address 10.1.1.9/30
 !
 interface lo
- ip address 1.1.1.2/32 
- ip ospf area 0
+ ip address 1.1.1.1/32
 !
 router bgp 1
- neighbor 1.1.1.1 remote-as 1
- neighbor 1.1.1.1 update-source lo
+ neighbor ibgp peer-group
+ neighbor ibgp remote-as 1
+ neighbor ibgp update-source lo
+ bgp listen range 1.1.1.0/29 peer-group ibgp
  !
- address-family l2vpn evpn
-  neighbor 1.1.1.1 activate
-  advertise-all-vni
-exit-address-family
+ address-family 12vpn evpn
+  neighbor ibgp activate
+  neighbor tbgp route-reflector-client
+ exit-address-family
 !
 router ospf
 !
-exit 
-exit
-exit
-ip a sh dev lo
-#
