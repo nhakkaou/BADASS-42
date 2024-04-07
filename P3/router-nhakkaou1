@@ -1,10 +1,14 @@
-# Shell
+#Opening vtysh,the command line interface for FRRouting
 vtysh
+#Opening configuration terminal
 conf t
-# Config
 
+#Configuring the router
+#eth0 interface configuration
 interface eth0
+ #Assigning an IP address to the interface
  ip address 10.1.1.1/30
+  #Assigning the interface to the OSPF area 0
  ip ospf area 0
 
 interface eth1
@@ -17,14 +21,21 @@ interface eth2
 interface lo
  ip address 1.1.1.1/32
  ip ospf area 0
-
+#Configuring the BGP routing protocol with the AS number 1
 router bgp 1
+#Creates a peer group named ibgp, which is used to configure the BGP session with the neighbor
  neighbor ibgp peer-group
+
  neighbor ibgp remote-as 1
+ #The update source is the loopback interface, which is used to establish the BGP session
  neighbor ibgp update-source lo
+# Configuring the BGP session with any ip address in the range whitin the peer group ibgp
 bgp listen range 1.1.1.0/29 peer-group ibgp
+#Enabling address-family for the L2VPN EVPN.
 address-family l2vpn evpn
+#Activating the neighbor and configuring it as a route reflector client
   neighbor ibgp activate
   neighbor ibgp route-reflector-client
 exit-address-family
+#Enabling the OSPF routing protocol
 router ospf
