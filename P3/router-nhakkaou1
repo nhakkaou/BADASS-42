@@ -29,7 +29,7 @@ router bgp 1
  neighbor ibgp remote-as 1
  #The update source is the loopback interface, which is used to establish the BGP session
  neighbor ibgp update-source lo
-# Configuring the BGP session with any ip address in the range whitin the peer group ibgp
+# Configuring the BGP session with any ip address in the range whithin the peer group ibgp
 bgp listen range 1.1.1.0/29 peer-group ibgp
 #Enabling address-family for the L2VPN EVPN.
 address-family l2vpn evpn
