@@ -13,7 +13,7 @@ can be used to carry reachability information (NLRI) for various protocols (IPv4
 L3 VPN and in this case, EVPN). EVPN is a special family for publishing information
 about MAC addresses and the end devices that access them..
 
-<img width="640" alt="Screen Shot 2024-04-22 at 12 40 32 AM" src="https://github.com/iltafah/BGP-GNS3/assets/56886719/b0e35d62-c022-43cd-8d46-a0e6348aaa72">
+<img width="640" alt="net" src="https://github.com/nhakkaou/BADASS-42/assets/56886719/a741f90c-5ead-41ba-b98b-2c1bf518214a">
 
 
 ### HelpFul Notes, well at least for me :
@@ -34,11 +34,12 @@ brctl addif br0 eth2
 # now you can ping from host `tofa7a-host-1` to `tofa7a-host-2` and vice-verca, do the same thing for the other router if you want to ping the other host
 # don't forget to assign ip addresses for your host
 ```
-<img width="1068" alt="Screen Shot 2024-04-21 at 3 50 31 AM" src="https://github.com/iltafah/BGP-GNS3/assets/56886719/6725c08f-9304-4e15-a0ef-a71dd0b61875">
+
+<img width="1068" alt="Screen Shot 2024-04-21 at 3 50 31 AM" src="https://github.com/nhakkaou/BADASS-42/assets/56886719/cbf44847-e1ba-4e92-91e8-196b48384115">
 
 ####  ARP Packet Flow:
 
-  ![ezgif com-animated-gif-maker](https://github.com/iltafah/BGP-GNS3/assets/56886719/b4ef070c-d37b-46cc-8b24-477ca2007874)
+![ezgif com-animated-gif-maker](https://github.com/nhakkaou/BADASS-42/assets/56886719/a0fe7434-5d0c-4aea-82e3-767fff8df85b)
 
 
 #### To Debug :
@@ -72,8 +73,7 @@ tcpdump -n -i eth1
 # If you want to add another host, just like the following image, you will have to add a new interface within the router
 # then you will have to bridge the Vxlan interface with your new host interface
 ```
-
-<img width="2560" alt="Screen Shot 2024-04-21 at 2 09 08 AM" src="https://github.com/iltafah/BGP-GNS3/assets/56886719/dbf2ec65-1d9a-4916-ad13-13214ab10b0b">
+<img width="2560" alt="Screen Shot 2024-04-21 at 2 09 08 AM" src="https://github.com/nhakkaou/BADASS-42/assets/56886719/138b69b2-1697-4186-a4b6-d465f7add136">
 
 ```bash
 # If you want to play around and go further away with debugging, you can flush arp cash table
