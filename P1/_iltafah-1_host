@@ -1,3 +1,10 @@
 FROM alpine:latest
 
+RUN apk upgrade && apk update
+
+# IN ORDER TO DEBUG WITH
+# iputils include updated ping, which makes me overide the echo message
+# tcpdump just like Wireshark to see the incoming requests in a certain interface
+RUN apk add tcpdump vim iputils
+
 
